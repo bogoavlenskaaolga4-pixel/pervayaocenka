@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;color:#2d1f1a;background:#fff9f0;overflow-x:hidden;}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:16px;}
+.btn{display:inline-block;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;padding:16px 40px;border-radius:50px;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+.btn:hover{transform:translateY(-2px);}
+.btn-orange{background:#ff6b35;color:#fff;box-shadow:0 4px 20px rgba(255,107,53,.35);}
+.btn-orange:hover{box-shadow:0 8px 28px rgba(255,107,53,.45);}
+.hero{background:linear-gradient(135deg,#fff0a0 0%,#ffcf77 40%,#ffb3c6 100%);padding:72px 40px 64px;text-align:center;position:relative;overflow:hidden;}
+.hero-stars{position:absolute;inset:0;pointer-events:none;}
+.star{position:absolute;font-size:24px;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-12px) rotate(10deg);}}
+.hero h1{font-family:'Nunito',sans-serif;font-weight:800;font-size:52px;line-height:1.1;color:#2d1f1a;margin-bottom:10px;position:relative;}
+.hero h1 span{color:#ff6b35;}
+.hero-sub{font-size:18px;font-weight:600;color:#6b4a00;margin-bottom:32px;position:relative;}
+.hero-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:36px;position:relative;}
+.pill{background:#fff;border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;color:#2d1f1a;box-shadow:0 2px 10px rgba(0,0,0,.08);}
+.pill-special{background:linear-gradient(135deg,#a29bfe,#fd79a8);color:#fff;box-shadow:0 4px 16px rgba(162,155,254,.4);}
+.moments{display:grid;grid-template-columns:repeat(4,1fr);}
+.mom{padding:48px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+.mom-ico{font-size:72px;line-height:1;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15));}
+.mom-label{font-size:15px;font-weight:800;color:#fff;}
+.m1{background:#ff6b35;}.m2{background:#4ecdc4;}.m3{background:#a29bfe;}.m4{background:#fd79a8;}
+.methods{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:56px 40px;}
+.mcard{border-radius:24px;padding:28px 16px;text-align:center;transition:transform .2s;}
+.mcard:hover{transform:translateY(-4px);}
+.mcard-ico{font-size:48px;margin-bottom:12px;display:block;}
+.mcard-title{font-size:14px;font-weight:800;color:#2d1f1a;margin-bottom:6px;}
+.mcard-text{font-size:12px;color:#7a5a50;line-height:1.5;}
+.diag-num{width:34px;height:34px;border-radius:50%;background:#ff6b35;color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fmt-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 40px 56px;}
+.booking-wrap{background:linear-gradient(135deg,#a29bfe22,#fd79a822);padding:56px 40px;}
+.booking{background:#fff;border-radius:28px;padding:40px;box-shadow:0 8px 40px rgba(162,155,254,.2);}
+.step-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#a29bfe;margin-bottom:20px;}
+.field-label{font-size:12px;font-weight:700;color:#9a7060;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:8px;}
+.field{width:100%;padding:13px 16px;border:2px solid #e8d8f8;border-radius:14px;font-family:'Nunito',sans-serif;font-size:14px;color:#2d1f1a;outline:none;background:#fdfaff;font-weight:600;}
+.field:focus{border-color:#a29bfe;}
+.goal-btn{border:2px solid #e8d8f8;border-radius:16px;padding:14px 16px;cursor:pointer;transition:all .2s;background:#fdfaff;text-align:center;}
+.goal-btn:hover{border-color:#a29bfe;background:#f0eeff;}
+.day-btn{border:2px solid #e8d8f8;border-radius:14px;padding:12px 8px;text-align:center;cursor:pointer;background:#fdfaff;transition:all .2s;}
+.day-btn:hover{border-color:#a29bfe;}
+.slot-btn{border:2px solid #e8d8f8;border-radius:12px;padding:12px;text-align:center;cursor:pointer;background:#fdfaff;font-size:14px;font-weight:700;color:#2d1f1a;transition:all .2s;}
+.slot-btn:hover{border-color:#a29bfe;background:#f0eeff;}
+.btn-back{padding:15px 24px;background:transparent;color:#9a7060;border:2px solid #e8d8f8;border-radius:50px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-next{flex:1;padding:15px;background:#ff6b35;color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(255,107,53,.3);transition:all .2s;}
+.btn-next:hover{background:#e85a28;transform:translateY(-1px);}
+.btn-submit{flex:1;padding:15px;background:linear-gradient(135deg,#a29bfe,#fd79a8);color:#fff;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(162,155,254,.4);}
+/* Специальный баннер */
+.inclusive-banner{background:linear-gradient(135deg,#667eea,#764ba2);padding:40px 48px;display:flex;align-items:center;gap:32px;}
+.inclusive-heart{font-size:72px;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stars">
+    <span class="star" style="top:12%;left:8%;">⭐</span>
+    <span class="star" style="top:20%;right:10%;animation-delay:.5s;">🌟</span>
+    <span class="star" style="top:60%;left:5%;animation-delay:1s;">✨</span>
+    <span class="star" style="top:70%;right:7%;animation-delay:1.5s;">⭐</span>
+    <span class="star" style="top:40%;left:3%;animation-delay:.8s;">🎈</span>
+    <span class="star" style="top:35%;right:4%;animation-delay:.3s;">🎈</span>
+  </div>
+  <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:#ff6b35;margin-bottom:6px;position:relative;">⭐ ПЕРВАЯ ОЦЕНКА</div>
+  <div class="eyebrow" style="color:#b35a00;position:relative;">Подготовка к школе · онлайн и офлайн</div>
+  <h1 style="position:relative;">Елена <span>Леонидовна</span><br>— педагог с душой!</h1>
+  <div class="hero-sub">Учимся играя · Растём радуясь · Верим в каждого</div>
+  <div class="hero-pills">
+    <div class="pill">🎮 Игровой подход</div>
+    <div class="pill">💻 Современные технологии</div>
+    <div class="pill">❤️ С любовью</div>
+    <div class="pill">✨ 25+ лет опыта</div>
+    <div class="pill pill-special">🌈 Работаю с особенными детьми</div>
+  </div>
+  <button class="btn btn-orange" onclick="document.getElementById('booking-section').scrollIntoView({behavior:'smooth'})">Записаться на диагностику 🎯</button>
+</div>
+
+<!-- МОМЕНТЫ -->
+<div class="moments">
+  <div class="mom m1"><div class="mom-ico">📚</div><div class="mom-label">Чтение</div></div>
+  <div class="mom m2"><div class="mom-ico">🔢</div><div class="mom-label">Математика</div></div>
+  <div class="mom m3"><div class="mom-ico">🎨</div><div class="mom-label">Творчество</div></div>
+  <div class="mom m4"><div class="mom-ico">🧩</div><div class="mom-label">Логика</div></div>
+</div>
+
+<!-- МЕТОДИКИ -->
+<div style="background:#fff9f0;padding:56px 40px 16px;text-align:center;">
+  <div class="eyebrow" style="color:#ff6b35;">Авторские методики</div>
+  <div style="font-weight:800;font-size:34px;color:#2d1f1a;">Современно. Эффективно. <span style="color:#ff6b35;">Весело!</span></div>
+</div>
+<div class="methods" style="background:#fff9f0;">
+  <div class="mcard" style="background:linear-gradient(160deg,#fff0a0,#ffcf77);"><span class="mcard-ico">🤖</span><div class="mcard-title">STEM-подход</div><div class="mcard-text">Логика, исследование и первые шаги в науку</div></div>
+  <div class="mcard" style="background:linear-gradient(160deg,#b8f0c8,#4ecdc4);"><span class="mcard-ico">🌿</span><div class="mcard-title">Метод Монтессори</div><div class="mcard-text">Учимся через свободу и интерес</div></div>
+  <div class="mcard" style="background:linear-gradient(160deg,#d0c8ff,#a29bfe);"><span class="mcard-ico">🧠</span><div class="mcard-title">Нейрогимнастика</div><div class="mcard-text">Особенно эффективна при ОВЗ и особенностях развития</div></div>
+  <div class="mcard" style="background:linear-gradient(160deg,#ffd8b0,#ff6b35);"><span class="mcard-ico">📖</span><div class="mcard-title">Скорочтение</div><div class="mcard-text">Читать быстро и с пониманием</div></div>
+  <div class="mcard" style="background:linear-gradient(160deg,#ffb3c6,#fd79a8);"><span class="mcard-ico">🎵</span><div class="mcard-title">Музыкальное развитие</div><div class="mcard-text">Ритм и слух — мощный инструмент для особенных детей</div></div>
+</div>
+
+<!-- БАННЕР: ОСОБЕННЫЕ ДЕТИ -->
+<div class="inclusive-banner">
+  <div class="inclusive-heart">🌈</div>
+  <div style="flex:1;">
+    <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:10px;font-weight:700;">Особый подход</div>
+    <div style="font-weight:800;font-size:28px;color:#fff;margin-bottom:12px;">Каждый ребёнок достоин раскрыться</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.85);line-height:1.9;margin-bottom:20px;">Более 15 лет я работаю с детьми с особенностями развития и ограниченными возможностями здоровья. Я знаю: таким детям нужен не упрощённый подход — а особенно <em>внимательный</em>. Каждое занятие строится индивидуально, в своём темпе, с уважением к возможностям ребёнка.</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <div style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;">🧩 Задержка развития</div>
+      <div style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;">♿ Дети с ОВЗ</div>
+      <div style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;">💬 Нарушения речи</div>
+      <div style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;">✏️ Трудности с письмом и чтением</div>
+      <div style="background:rgba(255,255,255,.15);border-radius:50px;padding:10px 20px;font-size:13px;font-weight:700;color:#fff;">🪑 Сложности с вниманием</div>
+    </div>
+  </div>
+</div>
+
+<!-- БОЛИ РОДИТЕЛЕЙ -->
+<div style="background:#fff;padding:56px 40px 48px;text-align:center;">
+  <div class="eyebrow" style="color:#fd79a8;">Знакомо?</div>
+  <div style="font-weight:800;font-size:34px;color:#2d1f1a;margin-bottom:8px;">О чём думает мама <span style="color:#fd79a8;">будущего первоклашки</span></div>
+  <div style="font-size:15px;color:#9a7060;font-weight:600;margin-bottom:40px;">Мы работаем над каждым из этих пунктов 👇</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;text-align:left;margin-bottom:20px;">
+    <div style="background:linear-gradient(135deg,#fff0f6,#ffd6e7);border-radius:24px;padding:28px 24px;">
+      <div style="font-size:44px;margin-bottom:16px;">✏️</div>
+      <div style="font-weight:800;font-size:15px;color:#2d1f1a;margin-bottom:10px;">«Не плакать над прописью дома»</div>
+      <div style="font-size:13px;color:#7a5a50;line-height:1.7;">Заранее развиваем кисть, пальчики и моторику — так, чтобы к первому классу письмо давалось легко и без слёз ✅</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#f0fff4,#b2dfdb);border-radius:24px;padding:28px 24px;">
+      <div style="font-size:44px;margin-bottom:16px;">🎒</div>
+      <div style="font-weight:800;font-size:15px;color:#2d1f1a;margin-bottom:10px;">«Войти в школу без стресса и страха»</div>
+      <div style="font-size:13px;color:#7a5a50;line-height:1.7;">Психологически готовим ребёнка к новому этапу. Он входит в первый класс уверенно — без тревоги и без слёз ✅</div>
+    </div>
+    <div style="background:linear-gradient(135deg,#fff9e6,#ffecb3);border-radius:24px;padding:28px 24px;">
+      <div style="font-size:44px;margin-bottom:16px;">🪑</div>
+      <div style="font-weight:800;font-size:15px;color:#2d1f1a;margin-bottom:10px;">«Сидеть, слушать и доводить до конца»</div>
+      <div style="font-size:13px;color:#7a5a50;line-height:1.7;">Усидчивость и дисциплина — это навык, и мы его тренируем мягко, без давления ✅</div>
+    </div>
+  </div>
+  <!-- Карточка для особенных детей -->
+  <div style="background:linear-gradient(135deg,#ede7f6,#d1c4e9);border-radius:24px;padding:28px 32px;text-align:left;border-left:5px solid #7c4dff;">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px;">
+      <div style="font-size:44px;">💜</div>
+      <div style="font-weight:800;font-size:18px;color:#2d1f1a;">«Мой ребёнок особенный — найдут ли к нему подход?»</div>
+    </div>
+    <div style="font-size:14px;color:#5a3a80;line-height:1.8;">Да — и именно здесь. Более 15 лет опыта работы с детьми с особенностями развития и ОВЗ. Занятия строятся строго индивидуально: свой темп, свои инструменты, своя программа. Особенный ребёнок — это не сложность, это особая радость, когда видишь его прогресс ✅</div>
+  </div>
+</div>
+
+<!-- О ПЕДАГОГЕ -->
+<div style="background:#2d1f1a;padding:64px 48px;">
+  <div style="display:flex;gap:40px;align-items:center;margin-bottom:40px;">
+
+    <!-- Фото -->
+    <div style="position:relative;width:220px;flex-shrink:0;">
+      <img src="https://i.imgur.com/IkriSgB.jpeg"
+           style="width:220px;height:290px;object-fit:cover;object-position:center 15%;border-radius:28px;box-shadow:0 12px 40px rgba(0,0,0,.5);border:3px solid #ff6b35;display:block;">
+      <div style="position:absolute;top:-14px;right:-14px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#fd79a8);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 12px rgba(255,107,53,.5);">⭐</div>
+    </div>
+
+    <div style="flex:1;">
+      <div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#ff6b35;margin-bottom:10px;font-weight:700;">О педагоге</div>
+      <div style="font-weight:800;font-size:36px;color:#fdfaf7;margin-bottom:14px;">Елена Леонидовна</div>
+      <div style="font-size:15px;color:#c0a090;line-height:1.9;margin-bottom:24px;">Учитель начальных классов и педагог дошкольного образования. За 25 лет работы убедилась: каждый ребёнок талантлив — нужно лишь найти к нему подход. Особое место в моём сердце занимают дети с особенностями развития — с ними я работаю более 15 лет.</div>
+      <div style="display:flex;gap:36px;flex-wrap:wrap;">
+        <div><div style="font-size:38px;font-weight:800;color:#ffcf77;">25+</div><div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a7060;margin-top:2px;">лет опыта</div></div>
+        <div><div style="font-size:38px;font-weight:800;color:#ffcf77;">200+</div><div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a7060;margin-top:2px;">выпускников</div></div>
+        <div><div style="font-size:38px;font-weight:800;color:#ffcf77;">15+</div><div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9a7060;margin-top:2px;">лет с ОВЗ</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div style="background:rgba(255,255,255,.07);border-radius:20px;padding:24px 20px;display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:34px;flex-shrink:0;">🎓</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#fdfaf7;margin-bottom:6px;">Учитель начальных классов</div>
+        <div style="font-size:12px;color:#9a7060;line-height:1.6;">Высшее педагогическое образование. Специализация: начальная школа и дошкольное образование</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,.07);border-radius:20px;padding:24px 20px;display:flex;gap:14px;align-items:flex-start;">
+      <div style="font-size:34px;flex-shrink:0;">🏆</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#fdfaf7;margin-bottom:6px;">Призёр региональных конкурсов</div>
+        <div style="font-size:12px;color:#9a7060;line-height:1.6;">«Учитель года» · Лауреат Мамченских педагогических чтений · Признание профессионального сообщества</div>
+      </div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(162,155,254,.2),rgba(253,121,168,.2));border-radius:20px;padding:24px 20px;display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(162,155,254,.3);">
+      <div style="font-size:34px;flex-shrink:0;">💜</div>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:#fdfaf7;margin-bottom:6px;">Специалист по работе с особенными детьми</div>
+        <div style="font-size:12px;color:#9a7060;line-height:1.6;">Дети с особенностями развития и ОВЗ — индивидуальная программа для каждого</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ДИАГНОСТИКА -->
+<div style="background:linear-gradient(135deg,#fff7e6,#fce4ec);padding:64px 40px;">
+  <div style="text-align:center;margin-bottom:40px;">
+    <div class="eyebrow" style="color:#ff6b35;">Первый шаг — бесплатно</div>
+    <div style="font-weight:800;font-size:38px;color:#2d1f1a;margin-bottom:10px;">Диагностика ребёнка <span style="color:#ff6b35;">за 0 ₽</span></div>
+    <div style="font-size:15px;color:#9a7060;font-weight:600;">30 минут · онлайн или офлайн · без стресса для ребёнка</div>
+  </div>
+
+  <!-- Основная карточка -->
+  <div style="background:#fff;border-radius:32px;overflow:hidden;box-shadow:0 16px 60px rgba(255,107,53,.15);max-width:960px;margin:0 auto;">
+
+    <!-- Верхняя полоса -->
+    <div style="background:linear-gradient(135deg,#ff6b35,#fd79a8);padding:20px 40px;display:flex;align-items:center;gap:16px;">
+      <span style="font-size:36px;">🔍</span>
+      <div>
+        <div style="font-size:18px;font-weight:800;color:#fff;">Бесплатная диагностика готовности к школе</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.8);margin-top:2px;">Узнаем, что умеет ваш ребёнок — и что нужно развить до первого класса</div>
+      </div>
+      <div style="margin-left:auto;background:rgba(255,255,255,.2);border-radius:50px;padding:8px 20px;font-size:13px;font-weight:800;color:#fff;white-space:nowrap;">⏱ 30 минут</div>
+    </div>
+
+    <div style="padding:36px 40px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+
+        <!-- Как проходит -->
+        <div>
+          <div style="font-size:13px;font-weight:800;color:#ff6b35;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;">Как проходит</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;gap:14px;align-items:flex-start;">
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#fd79a8);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+              <div style="font-size:14px;font-weight:600;color:#2d1f1a;padding-top:6px;">Игровые задания на внимание, речь и логику</div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start;">
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#fd79a8);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+              <div style="font-size:14px;font-weight:600;color:#2d1f1a;padding-top:6px;">Разбор результатов вместе с родителями</div>
+            </div>
+            <div style="display:flex;gap:14px;align-items:flex-start;">
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ff6b35,#fd79a8);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+              <div style="font-size:14px;font-weight:600;color:#2d1f1a;padding-top:6px;">Индивидуальный план с учётом особенностей ребёнка</div>
+            </div>
+          </div>
+          <button class="btn btn-orange" style="margin-top:28px;width:100%;text-align:center;" onclick="document.getElementById('booking-section').scrollIntoView({behavior:'smooth'})">Записаться на диагностику 🎯</button>
+        </div>
+
+        <!-- Подарки -->
+        <div>
+          <div style="font-size:13px;font-weight:800;color:#a29bfe;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;">🎁 Вы получите в подарок</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="background:linear-gradient(135deg,#f0eeff,#ffe8f8);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;">
+              <span style="font-size:24px;flex-shrink:0;">📋</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Чек-лист готовности к школе</div>
+                <div style="font-size:12px;color:#9a7060;margin-top:2px;">Что должен уметь ребёнок к 1 классу</div>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#e8fff4,#d0f0ff);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;">
+              <span style="font-size:24px;flex-shrink:0;">🗺️</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Личный план развития</div>
+                <div style="font-size:12px;color:#9a7060;margin-top:2px;">Составлен под вашего ребёнка</div>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#fffbe6,#fff0c8);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;">
+              <span style="font-size:24px;flex-shrink:0;">💬</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Разбор результатов</div>
+                <div style="font-size:12px;color:#9a7060;margin-top:2px;">Подробная консультация с рекомендациями</div>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#fff0f6,#ffd6e7);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;">
+              <span style="font-size:24px;flex-shrink:0;">📚</span>
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Список книг и игр для подготовки</div>
+                <div style="font-size:12px;color:#9a7060;margin-top:2px;">Подобранный под возраст и уровень</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ФОРМАТЫ -->
+<div style="background:#fff;">
+  <div style="text-align:center;padding:56px 40px 0;">
+    <div class="eyebrow" style="color:#4ecdc4;">Как работаем</div>
+    <div style="font-weight:800;font-size:34px;color:#2d1f1a;margin-bottom:8px;">Выберите <span style="color:#4ecdc4;">формат</span></div>
+    <div style="font-size:14px;color:#9a7060;font-weight:600;padding-bottom:32px;">Оба формата подходят для детей с особенностями развития</div>
+  </div>
+  <div class="fmt-grid">
+    <div style="border-radius:24px;padding:36px 32px;background:linear-gradient(135deg,#2d1f1a,#4a3030);">
+      <span style="font-size:48px;margin-bottom:16px;display:block;">💻</span>
+      <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin-bottom:10px;color:#ff6b35;">Онлайн</div>
+      <div style="font-size:24px;font-weight:800;color:#fff;margin-bottom:10px;">Занятия в Zoom</div>
+      <div style="font-size:13px;line-height:1.8;margin-bottom:16px;color:#c0a898;">Интерактивная доска, карточки, игры — всё для экрана. Особенно удобно для детей, которым сложно выходить из дома</div>
+      <div style="font-size:22px;font-weight:800;color:#ffcf77;">от 1 500 ₽</div>
+    </div>
+    <div style="border-radius:24px;padding:36px 32px;background:linear-gradient(135deg,#fff0a0,#ffd878);">
+      <span style="font-size:48px;margin-bottom:16px;display:block;">🏠</span>
+      <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;margin-bottom:10px;color:#b35a00;">Офлайн</div>
+      <div style="font-size:24px;font-weight:800;color:#2d1f1a;margin-bottom:10px;">Очные встречи</div>
+      <div style="font-size:13px;line-height:1.8;margin-bottom:16px;color:#7a5a00;">Живое общение, тактильные игры и сенсорные материалы — особенно ценно для детей с ОВЗ</div>
+      <div style="font-size:22px;font-weight:800;color:#b35a00;">от 2 000 ₽</div>
+    </div>
+  </div>
+</div>
+
+<!-- ОТЗЫВЫ -->
+<div style="background:#fff9f0;padding:56px 40px 48px;">
+  <div style="text-align:center;margin-bottom:40px;">
+    <div class="eyebrow" style="color:#fd79a8;">Отзывы</div>
+    <div style="font-weight:800;font-size:34px;color:#2d1f1a;">Родители <span style="color:#fd79a8;">говорят</span> 💬</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:900px;margin:0 auto;">
+
+    <div style="border-radius:24px;padding:28px 24px;background:linear-gradient(160deg,#fff0a0,#ffe870);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:24px;">⭐⭐⭐⭐⭐</div>
+      <div style="font-size:14px;font-weight:600;color:#2d1f1a;line-height:1.7;">Наш сын боялся учиться. Теперь сам просит заниматься — это настоящее чудо!</div>
+      <div style="margin-top:auto;">
+        <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Мария К.</div>
+        <div style="font-size:12px;color:#9a7060;">мама Артёма, 6 лет</div>
+      </div>
+    </div>
+
+    <div style="border-radius:24px;padding:28px 24px;background:linear-gradient(160deg,#c8f0ff,#90d8f0);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:24px;">⭐⭐⭐⭐⭐</div>
+      <div style="font-size:14px;font-weight:600;color:#2d1f1a;line-height:1.7;">Дочка каждый раз ждёт урока с нетерпением. Это говорит всё о педагоге!</div>
+      <div style="margin-top:auto;">
+        <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Ирина В.</div>
+        <div style="font-size:12px;color:#9a7060;">мама Сони, 5 лет</div>
+      </div>
+    </div>
+
+    <div style="border-radius:24px;padding:28px 24px;background:linear-gradient(160deg,#ffc8e0,#ff90c0);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:24px;">⭐⭐⭐⭐⭐</div>
+      <div style="font-size:14px;font-weight:600;color:#2d1f1a;line-height:1.7;">В первый класс пошёл уверенно и радостно. Учитель сразу отметил подготовку!</div>
+      <div style="margin-top:auto;">
+        <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Алексей Т.</div>
+        <div style="font-size:12px;color:#9a7060;">папа Миши, 7 лет</div>
+      </div>
+    </div>
+
+    <div style="border-radius:24px;padding:28px 24px;background:linear-gradient(160deg,#b8f0c8,#4ecdc4);display:flex;flex-direction:column;gap:12px;">
+      <div style="font-size:24px;">⭐⭐⭐⭐⭐</div>
+      <div style="font-size:14px;font-weight:600;color:#2d1f1a;line-height:1.7;">У сына была задержка речи. Елена Леонидовна нашла подход — сейчас говорит чисто и с удовольствием!</div>
+      <div style="margin-top:auto;">
+        <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Светлана П.</div>
+        <div style="font-size:12px;color:#2d6a60;">мама Кирилла, 5 лет</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Большой отзыв об особенных детях (без РАС) -->
+  <div style="max-width:900px;margin:16px auto 0;border-radius:24px;padding:28px 32px;background:linear-gradient(135deg,#ede7f6,#d1c4e9);display:flex;gap:20px;align-items:flex-start;">
+    <div style="font-size:44px;flex-shrink:0;line-height:1;">💜</div>
+    <div>
+      <div style="font-size:14px;font-weight:600;color:#4a2d70;line-height:1.8;margin-bottom:12px;">Наша дочь занималась с Еленой Леонидовной два года — у неё были сложности с концентрацией и усидчивостью. Никакого давления, только игра и терпение. Пошла в первый класс — учительница спросила, где так хорошо подготовили.</div>
+      <div style="font-size:13px;font-weight:800;color:#2d1f1a;">Олеся М.</div>
+      <div style="font-size:12px;color:#7a5090;">мама Вики, 7 лет · особенности внимания и развития</div>
+    </div>
+  </div>
+</div>
+
+<!-- ЗАПИСЬ -->
+<div id="booking-section" class="booking-wrap" style="padding-top:64px;">
+  <div style="text-align:center;margin-bottom:36px;">
+    <div class="eyebrow" style="color:#a29bfe;">Запись на диагностику</div>
+    <div style="font-weight:800;font-size:34px;color:#2d1f1a;">Выберите удобное <span style="color:#a29bfe;">время</span> 📅</div>
+  </div>
+  <div class="booking">
+    <div id="step1">
+      <div class="step-label">Шаг 1 из 3 · О ребёнке</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <div><label class="field-label">Имя ребёнка</label><input id="childName" class="field" type="text" placeholder="Например, Миша"></div>
+        <div><label class="field-label">Возраст</label><select id="childAge" class="field" style="cursor:pointer;"><option value="">Выберите возраст</option><option>4 года</option><option>5 лет</option><option>6 лет</option><option>7 лет</option></select></div>
+      </div>
+      <label class="field-label" style="margin-bottom:12px;display:block;">Цель занятий</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;">
+        <div class="goal-btn" onclick="selectGoal(this,'Подготовка к школе')"><div style="font-size:28px;margin-bottom:6px;">🎒</div><div style="font-size:13px;font-weight:700;color:#2d1f1a;">Подготовка к школе</div></div>
+        <div class="goal-btn" onclick="selectGoal(this,'Развитие речи')"><div style="font-size:28px;margin-bottom:6px;">🗣️</div><div style="font-size:13px;font-weight:700;color:#2d1f1a;">Развитие речи</div></div>
+        <div class="goal-btn" onclick="selectGoal(this,'Математика и логика')"><div style="font-size:28px;margin-bottom:6px;">🧮</div><div style="font-size:13px;font-weight:700;color:#2d1f1a;">Математика и логика</div></div>
+        <div class="goal-btn" onclick="selectGoal(this,'Работа с особенностями развития')"><div style="font-size:28px;margin-bottom:6px;">💜</div><div style="font-size:13px;font-weight:700;color:#2d1f1a;">Особенности развития</div></div>
+      </div>
+      <button class="btn-next" onclick="goStep2()">Выбрать время →</button>
+    </div>
+    <div id="step2" style="display:none;">
+      <div class="step-label">Шаг 2 из 3 · Выберите время</div>
+
+      <!-- Город / часовой пояс -->
+      <div style="background:linear-gradient(135deg,#f0eeff,#fff0f8);border-radius:16px;padding:16px 20px;margin-bottom:20px;display:flex;gap:14px;align-items:center;">
+        <span style="font-size:28px;flex-shrink:0;">📍</span>
+        <div style="flex:1;">
+          <label class="field-label" style="margin-bottom:6px;">Ваш город или часовой пояс</label>
+          <select id="cityField" class="field" style="cursor:pointer;">
+            <option value="">— Выберите регион —</option>
+            <option value="Новосибирск (UTC+7)">🏙 Новосибирск (UTC+7)</option>
+            <option value="Томск (UTC+7)">🏙 Томск (UTC+7)</option>
+            <option value="Барнаул (UTC+7)">🏙 Барнаул (UTC+7)</option>
+            <option value="Кемерово (UTC+7)">🏙 Кемерово (UTC+7)</option>
+            <option value="Красноярск (UTC+7)">🏙 Красноярск (UTC+7)</option>
+            <option value="Абакан (UTC+7)">🏙 Абакан (UTC+7)</option>
+            <option value="Горно-Алтайск (UTC+7)">🏙 Горно-Алтайск (UTC+7)</option>
+            <option value="Омск (UTC+6)">🏙 Омск (UTC+6)</option>
+            <option value="Иркутск (UTC+8)">🏙 Иркутск (UTC+8)</option>
+            <option value="Улан-Удэ (UTC+8)">🏙 Улан-Удэ (UTC+8)</option>
+            <option value="Чита (UTC+9)">🏙 Чита (UTC+9)</option>
+            <option value="Якутск (UTC+9)">🏙 Якутск (UTC+9)</option>
+            <option value="Хабаровск (UTC+10)">🏙 Хабаровск (UTC+10)</option>
+            <option value="Владивосток (UTC+10)">🏙 Владивосток (UTC+10)</option>
+            <option value="Южно-Сахалинск (UTC+11)">🏙 Южно-Сахалинск (UTC+11)</option>
+            <option value="Магадан (UTC+11)">🏙 Магадан (UTC+11)</option>
+            <option value="Петропавловск-Камчатский (UTC+12)">🏙 Петропавловск-Камчатский (UTC+12)</option>
+            <option value="Анадырь, Чукотка (UTC+12)">🏙 Анадырь, Чукотка (UTC+12)</option>
+          </select>
+          <div style="font-size:11px;color:#a090c0;margin-top:6px;font-weight:600;">Время на сайте указано по МСК — мы подстроимся под вас</div>
+        </div>
+      </div>
+
+      <!-- Дни -->
+      <div id="calDays" style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;"></div>
+
+      <!-- Блоки времени -->
+      <label class="field-label" style="margin-bottom:12px;display:block;">Удобное время</label>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;" id="timeBlocks">
+        <div class="time-block" onclick="selectTimeBlock(this,'Утро (9:00–12:00)')" style="border:2px solid #e8d8f8;border-radius:18px;padding:18px 14px;text-align:center;cursor:pointer;background:#fdfaff;transition:all .2s;">
+          <div style="font-size:32px;margin-bottom:8px;">🌅</div>
+          <div style="font-size:14px;font-weight:800;color:#2d1f1a;margin-bottom:4px;">Утро</div>
+          <div style="font-size:12px;color:#9a7060;font-weight:600;">9:00 — 12:00</div>
+        </div>
+        <div class="time-block" onclick="selectTimeBlock(this,'День (14:00–18:00)')" style="border:2px solid #e8d8f8;border-radius:18px;padding:18px 14px;text-align:center;cursor:pointer;background:#fdfaff;transition:all .2s;">
+          <div style="font-size:32px;margin-bottom:8px;">☀️</div>
+          <div style="font-size:14px;font-weight:800;color:#2d1f1a;margin-bottom:4px;">День</div>
+          <div style="font-size:12px;color:#9a7060;font-weight:600;">14:00 — 18:00</div>
+        </div>
+        <div class="time-block" onclick="selectTimeBlock(this,'Вечер (18:00–20:00)')" style="border:2px solid #e8d8f8;border-radius:18px;padding:18px 14px;text-align:center;cursor:pointer;background:#fdfaff;transition:all .2s;">
+          <div style="font-size:32px;margin-bottom:8px;">🌙</div>
+          <div style="font-size:14px;font-weight:800;color:#2d1f1a;margin-bottom:4px;">Вечер</div>
+          <div style="font-size:12px;color:#9a7060;font-weight:600;">18:00 — 20:00</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;"><button class="btn-back" onclick="goStep1()">← Назад</button><button class="btn-next" onclick="goStep3()">Далее →</button></div>
+    </div>
+    <div id="step3" style="display:none;">
+      <div class="step-label">Шаг 3 из 3 · Ваши контакты</div>
+      <div id="summary" style="background:linear-gradient(135deg,#fff0a0,#ffe8c0);border-radius:16px;padding:16px 20px;margin-bottom:20px;font-size:13px;font-weight:600;color:#7a5a00;line-height:1.8;"></div>
+      <div style="display:grid;gap:14px;margin-bottom:20px;">
+        <div><label class="field-label">Ваше имя</label><input id="parentName" class="field" type="text" placeholder="Как вас зовут?"></div>
+        <div><label class="field-label">Телефон</label><input id="parentPhone" class="field" type="tel" placeholder="+7 (___) ___-__-__"></div>
+        <div>
+          <label class="field-label">Удобный способ связи</label>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;">
+            <select id="messengerType" class="field" style="cursor:pointer;width:auto;">
+              <option value="Telegram">✈️ Telegram</option>
+              <option value="ВКонтакте">💙 ВКонтакте</option>
+              <option value="Макс">💬 Макс</option>
+            </select>
+            <input id="messengerHandle" class="field" type="text" placeholder="@ник или ссылка на профиль">
+          </div>
+        </div>
+      </div>
+
+      <!-- Согласие по 152-ФЗ -->
+      <div style="background:#f8f4ff;border-radius:16px;padding:16px 20px;margin-bottom:20px;">
+        <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;">
+          <input type="checkbox" id="consentPD" style="margin-top:3px;width:18px;height:18px;accent-color:#a29bfe;flex-shrink:0;">
+          <span style="font-size:12px;color:#5a3a70;line-height:1.7;">
+            Я даю <strong>согласие на обработку персональных данных</strong> в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006. Мои данные (имя, номер телефона) используются исключительно для связи по вопросам записи на занятия и не передаются третьим лицам.
+          </span>
+        </label>
+      </div>
+      <div style="font-size:11px;color:#b0a0c0;line-height:1.7;margin-bottom:20px;padding:0 4px;">
+        🔒 Ваши данные защищены. Оператор персональных данных: ИП / частный педагог Елена Леонидовна. Вы вправе отозвать согласие в любое время, направив соответствующий запрос.
+      </div>
+
+      <div style="display:flex;gap:12px;"><button class="btn-back" onclick="goStep2b()">← Назад</button><button class="btn-submit" onclick="submitForm()">Записаться! 🎉</button></div>
+    </div>
+    <div id="stepDone" style="display:none;text-align:center;padding:24px 0;">
+      <div style="font-size:80px;margin-bottom:20px;">🎊</div>
+      <div style="font-weight:800;font-size:30px;color:#2d1f1a;margin-bottom:12px;">Вы записаны!</div>
+      <div id="doneText" style="font-size:14px;font-weight:600;color:#7a5a50;line-height:1.9;margin-bottom:20px;"></div>
+      <div style="font-size:13px;color:#9a7060;background:#fff9f0;padding:14px 20px;border-radius:14px;">💛 Елена Леонидовна напишет вам в Telegram для подтверждения</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let selectedGoal='',selectedDay='',selectedTimeBlock='';
+const days=['Пн','Вт','Ср','Чт','Пт','Сб'];
+function getWeekDates(){const today=new Date(),day=today.getDay();const mon=new Date(today);mon.setDate(today.getDate()-(day===0?6:day-1));return Array.from({length:6},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return{label:days[i],date:d.getDate()+'.'+(d.getMonth()+1).toString().padStart(2,'0')};});}
+function selectGoal(el,goal){document.querySelectorAll('.goal-btn').forEach(b=>{b.style.background='#fdfaff';b.style.borderColor='#e8d8f8';b.querySelector('div:last-child').style.color='#2d1f1a';});el.style.background='linear-gradient(135deg,#a29bfe,#fd79a8)';el.style.borderColor='#a29bfe';el.querySelector('div:last-child').style.color='#fff';selectedGoal=goal;}
+function selectTimeBlock(el,block){document.querySelectorAll('.time-block').forEach(b=>{b.style.background='#fdfaff';b.style.borderColor='#e8d8f8';b.querySelectorAll('div').forEach(d=>d.style.color=d.style.fontSize==='14px'?'#2d1f1a':'#9a7060');});el.style.background='linear-gradient(135deg,#a29bfe22,#fd79a822)';el.style.borderColor='#a29bfe';selectedTimeBlock=block;}
+function buildCalendar(){const dates=getWeekDates();document.getElementById('calDays').innerHTML=dates.map(d=>`<div class="day-btn" onclick="selectDay(this,'${d.label}, ${d.date}')"><div style="font-size:11px;color:#9a7060;margin-bottom:4px;font-weight:600;">${d.label}</div><div style="font-size:17px;font-weight:800;color:#2d1f1a;">${d.date.split('.')[0]}</div></div>`).join('');}
+function selectDay(el,date){document.querySelectorAll('.day-btn').forEach(b=>{b.style.background='#fdfaff';b.style.borderColor='#e8d8f8';b.querySelectorAll('div').forEach(d=>d.style.color=d.style.fontSize==='11px'?'#9a7060':'#2d1f1a');});el.style.background='linear-gradient(135deg,#a29bfe,#fd79a8)';el.style.borderColor='#a29bfe';el.querySelectorAll('div').forEach(d=>d.style.color='#fff');selectedDay=date;}
+function show(id){['step1','step2','step3','stepDone'].forEach(s=>document.getElementById(s).style.display=s===id?'block':'none');}
+function goStep1(){show('step1');}
+function goStep2b(){show('step2');}
+function goStep2(){if(!document.getElementById('childName').value||!document.getElementById('childAge').value||!selectedGoal){alert('Пожалуйста, заполните все поля и выберите цель 😊');return;}show('step2');buildCalendar();}
+function goStep3(){if(!selectedDay||!selectedTimeBlock){alert('Выберите день и удобное время 📅');return;}const name=document.getElementById('childName').value,age=document.getElementById('childAge').value;const city=document.getElementById('cityField').value;document.getElementById('summary').innerHTML=`🎒 <b>${name}</b>, ${age} · ${selectedGoal}<br>📅 ${selectedDay} · ${selectedTimeBlock}${city?'<br>📍 '+city:''}`; show('step3');}
+function submitForm(){const p=document.getElementById('parentName').value,ph=document.getElementById('parentPhone').value;if(!p||!ph){alert('Пожалуйста, заполните контактные данные 😊');return;}if(!document.getElementById('consentPD').checked){alert('Пожалуйста, дайте согласие на обработку персональных данных 🔒');return;}  const m=document.getElementById('messengerType').value, h=document.getElementById('messengerHandle').value;
+  document.getElementById('doneText').innerHTML=`<b>${p}</b>, спасибо за запись!<br>Ждём ${document.getElementById('childName').value} ${selectedDay}<br>Время: ${selectedTimeBlock}<br>Цель: ${selectedGoal}<br>Свяжемся с вами через ${m}${h?' ('+h+')':''}`;show('stepDone');}
+</script>
+</body>
+</html>
